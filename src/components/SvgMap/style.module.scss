@@ -1,0 +1,13 @@
+@import '@/src/assets/styles/variables.scss';
+
+.svgMap {
+  path {
+    fill: #eceef3;
+    &[id] {
+      fill: #c4c4c4;
+      &.svgMap__selected {
+        fill: #fbc02d;
+      }
+    }
+  }
+}

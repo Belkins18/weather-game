@@ -7,5 +7,8 @@
   },
   "extends": ["eslint-config-typescript"],
   "plugins": ["prettier", "eslint-plugin-prettier"],
-  "rules": {}
+  "rules": {
+    "no-debugger": 0,
+    "@typescript-eslint/ban-ts-comment": 0
+  }
 }

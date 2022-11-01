@@ -1,7 +1,9 @@
+$fontFamilyInter: 'Inter', sans-serif;
 $colors: (
   white: #fff,
   accent: #6c5dd3,
   purple: #5f75ee,
+  dark: #1f2128,
   gray: #808191,
   error: #ff0000,
   success: #6dea97,
@@ -13,3 +15,5 @@ $backgrounds: (
   dark: #1f2128,
   gray: #242731,
 );
+
+$clr-gradient: -webkit-linear-gradient(#FF9B0B, map-get($colors, accent));
