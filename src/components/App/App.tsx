@@ -2,8 +2,8 @@ import { FC, useEffect, useState } from 'react'
 import { SvgMap } from '@src/components/SvgMap'
 import {
   //   EOpenWeatherDataUnits,
-  EOpenWeatherEndpointType,
-  openWeatherGETRequest,
+  // EOpenWeatherEndpointType,
+  // openWeatherGETRequest,
   //   TOpenWeatherDataParams,
   //   TOpenWeatherGeoParams,
 } from '@src/api'
@@ -12,7 +12,7 @@ import s from './style.module.scss'
 import { stateList, TState } from './data'
 
 export const App: FC = () => {
-  const [state, setState] = useState<TState[]>(stateList)
+  const [state] = useState<TState[]>(stateList)
   const [selectedState, setSelectedState] = useState<TStates>(EStates.CA)
 
   //   const openWeatherDataParams: TOpenWeatherDataParams = {
