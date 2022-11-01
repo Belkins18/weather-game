@@ -31,17 +31,17 @@ export const openWeatherGETRequest = async (
 
   url = endpoint += '?' + new URLSearchParams(params).toString()
   console.log(url)
-  // try {
-  //   const response = await fetch(url, options)
+  try {
+    const response = await fetch(url, options)
 
-  //   if (response && response.status === 200) {
-  //     return await response.json()
-  //   } else {
-  //     throw new Error(
-  //       `Request endpoint ${endpointType} was failed! ${response.status}: ${response.statusText}`
-  //     )
-  //   }
-  // } catch (error: any) {
-  //   throw new Error(error.message)
-  // }
+    if (response && response.status === 200) {
+      return await response.json()
+    } else {
+      throw new Error(
+        `Request endpoint ${endpointType} was failed! ${response.status}: ${response.statusText}`
+      )
+    }
+  } catch (error: any) {
+    throw new Error(error.message)
+  }
 }
