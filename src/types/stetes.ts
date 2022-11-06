@@ -7,3 +7,21 @@ export enum EStates {
 }
 
 export type TStates = EStates
+
+export type TCity = {
+  id: string | number
+  parentId: TStates
+  name: string
+  images: string
+  location?: {
+    lat: number
+    lon: number
+  }
+  isSelected: boolean
+}
+
+export type TState = {
+  id: TStates
+  name: string
+  cities: TCity[]
+}

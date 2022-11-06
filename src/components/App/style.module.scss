@@ -169,17 +169,48 @@
     @include list-reset;
     display: flex;
     flex-direction: column;
-    align-items: baseline;
+    gap: 20px;
     li {
-      cursor: pointer;
       font-size: 18px;
       line-height: 27px;
       transition: 0.4s all;
 
-      &:hover,
+      button {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        color: map-get($colors, dark);
+        background-color: map-get($colors, white);
+        border: 2px solid map-get($colors, dark);
+        padding: 10px;
+        border-radius: 10px;
+        span {
+          position: relative;
+          font-size: 12px;
+          color: inherit;
+        }
+        &:hover {
+          color: map-get($colors, purple);
+          border-color:  map-get($colors, purple);
+        }
+        &[disabled] {
+          cursor: initial;
+          color: map-get($colors, dark);
+          opacity: 0.5;
+          &:hover {
+            border-color:  inherit;
+          }
+        }
+      }
+
       &.active {
         @include gradient-color($clr-gradient);
       }
+
+    
     }
     li + li {
       margin-top: rem(12);

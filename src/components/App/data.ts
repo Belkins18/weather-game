@@ -6,22 +6,7 @@ import seattle_wa from '@/src/assets/images/states/WA/seattle.jpeg'
 import vancouver_wa from '@/src/assets/images/states/WA/vancouver.jpeg'
 import salt_lake_city_ut from '@/src/assets/images/states/UT/salt lake city.jpeg'
 
-import { EStates, TStates } from '@/src/types'
-
-export type TCity = {
-  name: string
-  images: string
-  location?: {
-    lat: number
-    lon: number
-  }
-}
-
-export type TState = {
-  id: TStates
-  name: string
-  cities: TCity[]
-}
+import { EStates, TState } from '@/src/types'
 
 export const stateList: TState[] = [
   {
@@ -29,8 +14,11 @@ export const stateList: TState[] = [
     name: 'North Carolina',
     cities: [
       {
+        id: 'candler_nc',
+        parentId: EStates.NC,
         name: 'Candler',
         images: candler_nc,
+        isSelected: false,
       },
     ],
   },
@@ -39,8 +27,11 @@ export const stateList: TState[] = [
     name: 'South Carolina',
     cities: [
       {
+        id: 'boiling_springs_sc',
+        parentId: EStates.SC,
         name: 'Boiling Springs',
         images: boiling_springs_sc,
+        isSelected: false,
       },
     ],
   },
@@ -49,12 +40,18 @@ export const stateList: TState[] = [
     name: 'California',
     cities: [
       {
+        id: 'west_sacramento_ca',
+        parentId: EStates.CA,
         name: 'West Sacramento',
         images: west_sacramento_ca,
+        isSelected: false,
       },
       {
+        id: 'san_bernardino_ca',
+        parentId: EStates.CA,
         name: 'San Bernardino',
         images: san_bernardino_ca,
+        isSelected: false,
       },
     ],
   },
@@ -63,12 +60,18 @@ export const stateList: TState[] = [
     name: 'Washington',
     cities: [
       {
+        id: 'vancouver_wa',
+        parentId: EStates.WA,
         name: 'Vancouver',
         images: vancouver_wa,
+        isSelected: false,
       },
       {
+        id: 'seattle_wa',
+        parentId: EStates.WA,
         name: 'Seattle',
         images: seattle_wa,
+        isSelected: false,
       },
     ],
   },
@@ -77,8 +80,11 @@ export const stateList: TState[] = [
     name: 'Utah',
     cities: [
       {
+        id: 'salt_lake_city_ut',
+        parentId: EStates.UT,
         name: 'Salt Lake City',
         images: salt_lake_city_ut,
+        isSelected: false,
       },
     ],
   },
