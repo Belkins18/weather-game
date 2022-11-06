@@ -5,7 +5,7 @@
     "browser": true,
     "jest": true
   },
-  "extends": ["eslint-config-typescript", "prettier"],
+  "extends": ["eslint-config-typescript"],
   "plugins": ["prettier", "eslint-plugin-prettier"],
   "rules": {
     "no-debugger": 0,
