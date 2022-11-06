@@ -18,8 +18,8 @@ export const openWeatherGETRequest = async (
     method: 'GET',
   }
 
-  Object.assign(params, {appid: API_KEY}) 
-  
+  Object.assign(params, { appid: API_KEY })
+
   switch (endpointType) {
     case EOpenWeatherEndpointType.geo:
       endpoint = OPEN_WEATHER_GEO_ENDPOINT
@@ -41,7 +41,7 @@ export const openWeatherGETRequest = async (
         `Request endpoint ${endpointType} was failed! ${response.status}: ${response.statusText}`
       )
     }
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     throw new Error(error.message)
   }

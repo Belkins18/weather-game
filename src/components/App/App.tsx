@@ -90,7 +90,7 @@ export const App: FC = () => {
                 <div className={s.btnWrapper}>
                   {states.map((state) => (
                     <button
-                      className='btn'
+                      className="btn"
                       is-active={`${state.id === selectedState}`}
                       data-state={state.id}
                       type="button"
