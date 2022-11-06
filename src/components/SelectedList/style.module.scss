@@ -15,7 +15,7 @@
   padding: initial;
   border: 2px dashed currentColor;
   border-radius: 10px;
-  padding: 24px;
+  padding: 24px 10px;
   img {
     width: 100%;
     height: auto;
@@ -38,7 +38,7 @@
     border-color: map-get($colors, success);
     &::before {
 			content: 'You win!';
-      background-color: rgba(map-get($colors, success), 0.8);
+      background-color: rgba(map-get($colors, success), 0.4);
     }
   }
 
@@ -46,7 +46,7 @@
     border-color: map-get($colors, error);
     &::before {
 			content: 'You lose!';
-      background-color: rgba(map-get($colors, error), 0.8);
+      background-color: rgba(map-get($colors, error), 0.4);
     }
   }
 
@@ -55,7 +55,8 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 180px;
+    width: calc((100% / 5) - 10px);
+    min-width: 130px;
     padding: 10px;
     background: currentColor;
     border: 4px solid map-get($colors, accent);
@@ -96,6 +97,7 @@
   height: 40px;
   background-color: map-get($colors, dark);
   border-radius: 10px;
+  font-size: 12px;
   border: none;
   color: map-get($colors, white);
   &[disabled] {

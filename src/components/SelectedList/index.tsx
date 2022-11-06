@@ -31,7 +31,7 @@ export const SelectedList: FC<TSelectedListProps> = ({ data, resetGame }) => {
     <div className={s.list} data-status={gameStatus}>
       {gameStatus !== EGameStatus.notStarted && (
         <button className={`${s.button} ${s.button_reset}`} onClick={resetGame}>
-          Reset
+          Play again
         </button>
       )}
 

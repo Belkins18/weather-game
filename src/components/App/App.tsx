@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react'
+import { FC, useState } from 'react'
 import { SvgMap } from '@src/components/SvgMap'
 import { SelectedList } from '@src/components/SelectedList'
 import {
@@ -18,11 +18,6 @@ export const App: FC = () => {
   const getCities = () =>
     states.filter((state) => state.id === selectedState)[0].cities
 
-  useEffect(() => {
-    console.log(states)
-    console.log('selectedCities: ', selectedCities)
-  }, [states])
-
   const resetGameHandler = () => {
     setStates(stateList)
     setSelectedCities([])
@@ -31,8 +26,6 @@ export const App: FC = () => {
   const svgButtonClickHandler = (id: TStates) => setSelectedState(id)
 
   const selectCityHandler = async (item: TCity) => {
-    console.log(item)
-
     const openWeatherGeoParams: TOpenWeatherGeoParams = {
       q: [item.name],
     }
@@ -79,7 +72,11 @@ export const App: FC = () => {
         <div className={`${s.location__container} container`}>
           <h2 className={s.location__title}>Weather Game</h2>
           <div className={s.location__slogan}>
-          Choose 5 cities and guess what the temperature is now in each of the cities. 3 or more correct guesses will win!
+            <span>
+              Choose 5 cities and guess what the temperature is now in each of
+              the cities.
+            </span>
+            <span>3 or more correct guesses will win!</span>
           </div>
         </div>
 
@@ -87,47 +84,55 @@ export const App: FC = () => {
           <div
             className={`${s.location__container} ${s.location__wrapper} container`}
           >
-            <div className={s.location__svg}>
-              <SvgMap selectedState={selectedState} />
-
-              {states.map((state) => (
-                <button
-                  data-state={state.id}
-                  type="button"
-                  onClick={() => svgButtonClickHandler(state.id)}
-                  key={state.id}
-                >
-                  <span>
-                    {state.id} {state.name}
-                  </span>
-                </button>
-              ))}
-            </div>
-            <div className={s.location__navigate}>
-              <div id="infoStock" className={s.mapInfo}>
-                <div className={s.mapInfo__layyer} data-layyer="state">
-                  <div className={s.mapInfo__title}>
-                    Select {5 - selectedCities.length} cities by states
-                  </div>
-                  <ul>
-                    {getCities().map((item) => (
-                      <li key={item.id}>
-                        <button
-                          type="button"
-                          disabled={
-                            item.isSelected || selectedCities.length === 5
-                          }
-                          onClick={() => selectCityHandler(item)}
-                        >
-                          <img width="150px" src={item.images} alt="" />
-                          <span>{item.name}</span>
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
+            {selectedCities.length !== 5 && (
+              <div className={s.location__svg}>
+                <SvgMap selectedState={selectedState} />
+                <div className={s.btnWrapper}>
+                  {states.map((state) => (
+                    <button
+                      className='btn'
+                      is-active={`${state.id === selectedState}`}
+                      data-state={state.id}
+                      type="button"
+                      onClick={() => svgButtonClickHandler(state.id)}
+                      key={state.id}
+                    >
+                      <span>
+                        {state.id} {state.name}
+                      </span>
+                    </button>
+                  ))}
                 </div>
               </div>
-            </div>
+            )}
+            {selectedCities.length !== 5 && (
+              <div className={s.location__navigate}>
+                <div id="infoStock" className={s.mapInfo}>
+                  <div className={s.mapInfo__layyer} data-layyer="state">
+                    <div className={s.mapInfo__title}>
+                      Select {5 - selectedCities.length} cities by states
+                    </div>
+                    <ul>
+                      {getCities().map((item) => (
+                        <li key={item.id}>
+                          <button
+                            type="button"
+                            disabled={
+                              item.isSelected || selectedCities.length === 5
+                            }
+                            onClick={() => selectCityHandler(item)}
+                          >
+                            <img height="70px" src={item.images} alt="" />
+                            <span>{item.name}</span>
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            )}
+
             {selectedCities.length >= 1 ? (
               <SelectedList
                 data={selectedCities}

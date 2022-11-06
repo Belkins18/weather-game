@@ -19,6 +19,8 @@
   }
 
   &__slogan {
+    display: flex;
+    flex-direction: column;
     max-width: 680px;
     text-align: center;
     margin-top: 8;
@@ -29,7 +31,7 @@
   }
 
   &__map {
-    margin-top: 60;
+    margin-top: 20px;
     position: relative;
     color: map-get($colors, dark);
   }
@@ -39,6 +41,7 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    align-items: flex-start;
     gap: 32px;
     z-index: 1;
 
@@ -48,59 +51,33 @@
   }
 
   &__svg {
-    margin: 40px 0 20px;
     position: relative;
-    transition: 0.4s all;
-    color: map-get($colors, accent);
-    font-weight: 700;
-    svg {
-      margin-bottom: 10px;
-    }
+    margin: 40px 0 20px;
+    width: 100%;
+    // svg {
+    //   position: absolute;
+    //   z-index: -1;
+    // }
     @media screen and (min-width: 992px) {
       width: 60%;
-    }
-
-    [data-state] {
-      // position: absolute;
-      display: inline-flex;
-      align-items: flex-end;
-      span {
-        margin: 0 8px;
-        font-size: 18px;
-        line-height: 27px;
-      }
-    }
-    [data-reverse] {
-      img {
-        order: 1;
-      }
-    }
-    [data-state='WA'] {
-      top: 38px;
-      left: 90px;
-    }
-    [data-state='CA'] {
-      top: 180px;
-      left: 30px;
-    }
-    [data-state='UT'] {
-      top: 220px;
-      left: 185px;
-    }
-    [data-state='NC'] {
-      top: 280px;
-      right: 120px;
-    }
-    [data-state='SC'] {
-      top: 320px;
-      right: 150px;
     }
   }
 
   &__navigate {
-    position: relative;
-    flex: 1;
-    z-index: 2;
+    
+  }
+}
+
+.btnWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  button {
+    color: map-get($colors, white);
+    background: rgba(map-get($colors, accent), 0.8);
+    &[is-active=true]{
+      background: map-get($colors, purple);
+    }
   }
 }
 
@@ -168,7 +145,6 @@
   ul {
     @include list-reset;
     display: flex;
-    flex-direction: column;
     gap: 20px;
     li {
       font-size: 18px;

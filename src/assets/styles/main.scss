@@ -5,53 +5,67 @@
 @import './mixins.scss';
 @import './variables.scss';
 
-
-
 body {
-	position: relative;
-	line-height: 1.2;
-	min-width: 320px;
-	font-family: $fontFamilyInter;
-	color: map-get($colors, white);
-	font-size: 16px;
-	background-color: map-get($backgrounds, dark);
-	overflow-x: hidden;
-	&.no-scroll {
-	  overflow: hidden;
-	}
+  position: relative;
+  line-height: 1.2;
+  min-width: 320px;
+  font-family: $fontFamilyInter;
+  color: map-get($colors, white);
+  font-size: 16px;
+  background-color: map-get($backgrounds, dark);
+  overflow-x: hidden;
+  &.no-scroll {
+    overflow: hidden;
   }
+}
 
 * {
-	&::selection {
-	  background: transparent;
-	  color: map-get($colors, accent);
-	  border-radius: 4px;
-	}
-	@media (min-width: 1024px) {
-	  scrollbar-color: map-get($colors, accent) map-get($colors, accent);
-	  scrollbar-width: thin;
-	  &::-webkit-scrollbar {
-		width: 6px;
-		background-color: map-get($backgrounds, dark);
-		border-radius: 4px;
-	  }
-	  &::-webkit-scrollbar-thumb {
-		background-color: map-get($colors, accent);
-		border-radius: 4px;
-		box-shadow: none;
-		opacity: 1;
-		&:hover {
-		  background-color: map-get($colors, purple);
-		  opacity: 1;
-		}
-		&:active {
-		  opacity: 1;
-		  background-color: map-get($colors, purple);
-		}
-		&:focus {
-		  opacity: 1;
-		  background-color: map-get($colors, purple);
-		}
-	  }
-	}
+  &::selection {
+    background: transparent;
+    color: map-get($colors, accent);
+    border-radius: 4px;
   }
+  @media (min-width: 1024px) {
+    scrollbar-color: map-get($colors, accent) map-get($colors, accent);
+    scrollbar-width: thin;
+    &::-webkit-scrollbar {
+      width: 6px;
+      background-color: map-get($backgrounds, dark);
+      border-radius: 4px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: map-get($colors, accent);
+      border-radius: 4px;
+      box-shadow: none;
+      opacity: 1;
+      &:hover {
+        background-color: map-get($colors, purple);
+        opacity: 1;
+      }
+      &:active {
+        opacity: 1;
+        background-color: map-get($colors, purple);
+      }
+      &:focus {
+        opacity: 1;
+        background-color: map-get($colors, purple);
+      }
+    }
+  }
+}
+
+.btn {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  background-color: map-get($colors, dark);
+  border-radius: 10px;
+  border: none;
+  color: map-get($colors, white);
+  &[disabled] {
+    cursor: initial;
+    opacity: 0.5;
+  }
+}

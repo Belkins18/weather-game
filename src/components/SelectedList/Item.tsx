@@ -18,15 +18,18 @@ export const SelectedListItem: FC<TSelectedListItemProps> = ({
   city,
   pushResult,
 }) => {
-  const [inputValue, setValue] = useState<number>(0)
+  const [inputValue, setValue] = useState<string>('')
   const [curTemp, setTemp] = useState<number>()
 
   const [isPass, setPassResult] = useState<boolean | null>(null)
   const [isLoading, setLoading] = useState<boolean>(false)
   const [isChecked, setCheck] = useState<boolean>(false)
 
-  const passCheck = (value: number, temp: number, delta = 2.5) =>
-    value >= temp - delta && inputValue <= temp + delta
+  const passCheck = (value: string, temp: number, delta = 5) =>
+    parseFloat(value) >= temp - delta && parseFloat(value) <= temp + delta
+
+  const isValid = () =>
+    parseFloat(inputValue) >= -50 && parseFloat(inputValue) <= 50
 
   const checkWheatherHandler = async (location: {
     lat: number
@@ -49,10 +52,11 @@ export const SelectedListItem: FC<TSelectedListItemProps> = ({
     setCheck(true)
     setTemp(temp)
 
-		passCheck(inputValue, temp)
+    passCheck(inputValue, temp)
       ? pushResult(EGameStatus.win)
       : pushResult(EGameStatus.lose)
   }
+
   return (
     <div
       className={`${s.list__item} ${
@@ -66,17 +70,21 @@ export const SelectedListItem: FC<TSelectedListItemProps> = ({
           type="number"
           disabled={isChecked}
           value={inputValue}
+          pattern="/d*"
+          min={-50}
+          max={50}
+          maxLength={2}
           onInput={(e: any) => {
-            setValue(parseInt(e.target.value))
+            setValue(e.target.value.toString())
           }}
           onChange={(e: any) => {
-            setValue(parseInt(e.target.value))
+            setValue(e.target.value.toString())
           }}
         />
         <button
           type="button"
           className={s.button}
-          disabled={isLoading || isChecked}
+          disabled={isLoading || isChecked || inputValue === '' || !isValid()}
           onClick={() =>
             checkWheatherHandler(
               city.location as {
